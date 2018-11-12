@@ -4,7 +4,7 @@ RUN set -x \
 	&& apt-get update \
 	&& apt-get install -y wget \
 	&& apt-get install -y lsb-core \
-	&& apt-get wget https://repo.percona.com/apt/percona-release_0.1-6.$(lsb_release -sc)_all.deb \
+	&& wget https://repo.percona.com/apt/percona-release_0.1-6.$(lsb_release -sc)_all.deb \
 	&& apt-get dpkg -i percona-release_0.1-6.$(lsb_release -sc)_all.deb \
 	&& apt-get update \
 	&& apt-get install -y percona-xtrabackup-24 \
