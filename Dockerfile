@@ -28,4 +28,4 @@ EXPOSE 3306
 
 ENTRYPOINT ["/entrypoint.sh"]
 
-CMD [""]
+CMD ["mysqld"]
