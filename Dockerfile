@@ -18,14 +18,15 @@ RUN set -x \
 	&& mv /tmp/innobackupex /usr/local/innobackupex \
 	&& chmod 755 /usr/local/innobackupex/*.sh
 
-ADD xtrabackup_nc.sh /usr/bin/xtrabackup_nc.sh
-COPY entrypoint.sh /entrypoint.sh
+#ADD xtrabackup_nc.sh /usr/bin/xtrabackup_nc.sh
+#COPY entrypoint.sh /entrypoint.sh
 
-RUN chmod +x /entrypoint.sh
-RUN chmod +x /usr/bin/xtrabackup_nc.sh
+#RUN chmod +x /entrypoint.sh
+#RUN chmod +x /usr/bin/xtrabackup_nc.sh
+RUN echo "Starting listener for backup requests."
+RUN ncat --listen --keep-open --send-only --max-conns=1 3307 -c \
+    "xtrabackup --backup --stream=xbstream --user=root --password=not-so-secure" &
+RUN echo "Listerner for backup started."
 
-EXPOSE 3306
+#ENTRYPOINT ["/entrypoint.sh"]
 
-ENTRYPOINT ["/entrypoint.sh"]
-
-CMD ["mysqld"]
