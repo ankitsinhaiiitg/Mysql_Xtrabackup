@@ -21,6 +21,9 @@ RUN set -x \
 ADD xtrabackup_nc.sh /usr/bin/xtrabackup_nc.sh
 COPY entrypoint.sh /entrypoint.sh
 
+RUN chmod +x /entrypoint.sh
+RUN chmod +x /usr/bin/xtrabackup_nc.sh
+
 EXPOSE 3306
 
 ENTRYPOINT ["/entrypoint.sh"]
