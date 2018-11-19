@@ -23,10 +23,10 @@ RUN set -x \
 
 #RUN chmod +x /entrypoint.sh
 #RUN chmod +x /usr/bin/xtrabackup_nc.sh
-RUN echo "Starting listener for backup requests."
+
 RUN ncat --listen --keep-open --send-only --max-conns=1 3307 -c \
-    "xtrabackup --backup --stream=xbstream --user=root --password=not-so-secure" &
-RUN echo "Listerner for backup started."
+    "xtrabackup --backup --stream=xbstream --user=root --password=not-so-secure"
+
 
 #ENTRYPOINT ["/entrypoint.sh"]
 
