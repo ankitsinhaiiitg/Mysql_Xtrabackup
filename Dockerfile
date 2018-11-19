@@ -27,3 +27,5 @@ RUN chmod +x /usr/bin/xtrabackup_nc.sh
 EXPOSE 3306
 
 ENTRYPOINT ["/entrypoint.sh"]
+
+CMD [""]
